@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block site_wrapper %}
+	{% block content %}
+	 
+	  {% if form.errors %}
+	    <p class="error">Sorry, that's not a valid username or password</p>
+	  {% endif %}
+ 
+	 <form class="form-horizontal" action="/accounts/auth/" method="post">{% csrf_token %}
+	  <fieldset>
+
+		<!-- Form Name -->
+		<legend>Login</legend>
+		
+		<!-- Text input-->
+		<div class="control-group">
+		  <label class="control-label" for="username"></label>
+		  <div class="controls">
+		    <input id="username" name="username" type="text" placeholder="username" class="input-xlarge" required="">
+		  </div>
+		</div>
+		
+		<!-- Text input-->
+		<div class="control-group">
+		  <label class="control-label" for="password"></label>
+		  <div class="controls">
+		    <input id="password" name="password" type="text" placeholder="password" class="input-xlarge" required="">
+		    
+		  </div>
+		</div>
+		
+		<!-- Button (Double) -->
+		<div class="control-group">
+		  <label class="control-label" for="btn-login"></label>
+		  <div class="controls">
+		    <button id="btn-login" name="btn-login" class="btn btn-success">login</button>
+		  </div>
+		</div>
+		
+		</fieldset>
+		</form>
+
+		
+  <body class="animated fadeIn">
+
+    <div class="container">
+
+
+
+      <form class="form-signin">
+
+<img src="assets/img/logo-cs.png">
+        <h2 class="form-signin-heading">Please Login <span >Need to Register? <a href="register.htm">Click Here</a></span></h2>
+
+<form method="post" action="?" data-jkit="[form:validateonly=true]">
+<fieldset>
+        <input name="miniusername" id="miniusername"  type="text" data-jkit="[validate:required=true;min=3;max=10;error=Please enter your username (3-10 characters)]"  class="input-block-level" placeholder="Email address">
+        <input type="password" class="input-block-level" placeholder="Password" name="minipassword" id="minipassword"  data-jkit="[validate:required=true;strength=50;error=Please enter a secure password]">
+        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+        <button name="send"  value="Submit"  class="btn btn-medium btn-primary" type="submit"><i class="icon-spinner ast-alt icon-spin"></i> Login</button>
+        </fieldset>
+
+      </form>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+     <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.js"></script>
+     <script src="assets/js/jquery.jkit.1.1.10.js"></script>
+        <script src="assets/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript">
+    $("[rel=tooltip]").tooltip();
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  $('body').jKit();
+});
+</script>
+
+  </body>
+	{% endblock %}
+{% endblock %}

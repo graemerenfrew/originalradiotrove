@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block site-wrapper %}
+{% block content %}
+	<h2>{{ genre.name }}</h2>
+	<em>{{ genre.description }}</em>
+<div class="page-header">
+	</div>	
+	<!-- have all the series by parentgenre or by sub-genre if one selected -->
+	{% load pagination_tags %}
+	{% autopaginate series 10 %}
+		{% for s in series %}
+			<div class="">
+				<a href="/creativework/series/{{ s.slug }}/">{{ s.name }}</a>
+			</div> 
+		{% endfor %}
+ 	{% paginate %}
+	
+	
+{% endblock %}
+{% endblock %}

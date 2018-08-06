@@ -1,0 +1,20 @@
+{% if is_paginated %}{% load paginator %}{% paginator 3 %}{% endif %}
+
+					{% if ListView %}
+					   <ul>{% for photo in ListView %}
+					      <li />{{ photo.name }}
+					   {% endfor %}</ul>
+					{% endif %}
+					
+				{% if is_paginated %}{% load paginator %}{% paginator 3 %}{% endif %}
+				{% if is_paginated %}
+					{% load paginator %}{% paginator 3 %}
+				{% else %}
+					else
+				{% endif %}
+
+				{% if ListView %}
+				   <ul>{% for series in ListView %}
+				      <li />{{ series.name }}
+				   {% endfor %}</ul>
+				{% endif %}

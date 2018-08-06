@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load url from future %}
+
+{% block content %}
+
+	<h1>My Account</h1>
+	
+	<ul class="nav nav-tabs">
+		<li class="{% block account_nav_email %}{% endblock %}">
+			<a href="{% url 'account_email' %}">E-mail Addresses</a>
+		</li>
+		<li class="{% block account_nav_change_password %}{% endblock %}">
+			<a href="{% url 'account_change_password' %}">Change Password</a>
+		</li>
+	
+	</ul>
+	{% block account_content %}
+	{% endblock %}
+
+{% endblock %}
+ 

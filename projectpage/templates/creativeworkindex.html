@@ -1,0 +1,33 @@
+{% extends "_l_right_sidebar.html" %}
+
+	{% block content %}  
+	<div>
+			{% block info_header %}
+				{% include "_info_header.html" %}
+			{% endblock %}	
+			
+			<div class="row-fluid" >
+				<div class="span9 main-section">
+			
+				{% block sort_layer %}
+					{% include "_sort_options.html" %}
+				{% endblock %}	
+				
+				{% block main_col%}
+					<!-- {% include "_row_of_shows.html" %} -->
+					{% include "_series_list.html"%} 		
+	 			{% endblock %}
+
+				</div>
+				<div id="side-section" class="span3">
+					{% block side_col %}
+					    <!--{% include "_filter_options.html"  %}-->
+						<!-- {% include "_quick_login.html" %} -->  	
+						{% include "_latest_comments.html" %}	 
+					{% endblock %}
+				</div>	
+			</div>
+				
+	</div>
+	{% endblock %}
+ 

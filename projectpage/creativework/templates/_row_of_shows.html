@@ -1,0 +1,47 @@
+
+						<div class="row-fluid">
+							<ul class="thumbnails">
+								
+								{% for s in seasons %}
+								<li class="span3">
+									<div class="thumbnail">
+										<img data-src="holder.js/300x200" alt="300x200"  src="http://placehold.it/300x200">
+										<div class="caption">
+											<h6><a href="{{ s.get_absolute_url }}">{{ s.name }}</a></h6>
+											<p>
+												{{ s.name }}
+											</p>
+										</div>
+									</div>
+								</li>
+								{% endfor %}
+					        </ul>
+						</div>
+
+						<div class="pagination pagination-small pull-right">
+							<ul>
+								<li>
+									<a href="#">«</a>
+								</li>
+								<li>
+									<a href="#">1</a>
+								</li>
+								<li>
+									<a href="#">2</a>
+								</li>
+								<li>
+									<a href="#">3</a>
+								</li>
+								<li>
+									<a href="#">4</a>
+								</li>
+								<li>
+									<a href="#">5</a>
+								</li>
+								<li>
+									<a href="#">»</a>
+								</li>
+							</ul>
+						</div>
+
+					</div>

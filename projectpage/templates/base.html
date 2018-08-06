@@ -1,0 +1,162 @@
+{% load menu_tags %}
+{% load googletools %}
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>RadioTrove</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<!-- Include CSS Assets -->
+ 
+		<link rel="stylesheet" href="{% static "Watchopolis/assets/css/jkit.css" %}">
+		<link rel="stylesheet" href="{% static "Watchopolis/assets/css/bootstrap.css" %}">
+		<link rel="stylesheet" href="{% static "Watchopolis/assets/css/app.css" %}">
+		<link rel="stylesheet" href="{% static "Watchopolis/assets/css/bootstrap-responsive.css"  %}">
+		<!-- <link rel="stylesheet" href="{% static "/static/Watchopolis/assets/css/font-awesome.css" %}> -->
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+		<link rel="stylesheet" href="{% static "Watchopolis/assets/css/font-awesome.min.css" %}">  
+		
+		
+		<title>{% block title %}{% if page_title %}{{ page_title }} - {% endif %}
+			{{ site_name }}{% endblock %}</title>
+
+		<meta name="keywords" content="{{ meta_keywords }}" />
+		<meta name="description" content="{{ meta_description }}" />
+		<!-- Google -->
+        {% site_verification_code %}
+        {% analytics_code %}
+
+	</head>
+	<body>
+		<!-- Start Header -->
+		<div class="container">
+			<div id="header">
+				<div class="navbar navbar-static-top">
+					<div class="navbar-inner">
+						<div class="container">
+							<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+							<a href="/"> <h1>.</h1></a>
+
+							<div class="nav-collapse collapse">
+								<form class="navbar-form pull-left" role="form" action="/creativework/search/" method="post">{% csrf_token %}				
+									<div class="input-append">
+										<input type="text" placeholder="search" class="form-control" id="search" name="search_text">
+										<button class="btn btn-primary" type="button">
+											<i class="icon-search"></i>
+										</button>
+									</div>
+								</form>
+
+								<ul class="nav">
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Genres <b class="caret"></b></a>
+										<ul class="dropdown-menu">
+											{% block left_nav %}
+											{% nav_parentgenrelist %}
+											{% endblock %}
+										</ul>
+									</li>
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">Features <b class="caret"></b></a>
+										<ul class="dropdown-menu">
+											<li>
+												<a href="/privacy-policy/">Privacy Policy</a>
+											</li>
+											<li>
+												<a href="/copyright/">Copyright Policy</a>
+											</li>
+											<li>
+												<a href="/pricing-plans/">Pricing Plans</a>
+											</li>
+										</ul>
+									</li>
+									
+								</ul>
+
+								<p class="navbar-text pull-left">
+									{% if request.user.is_authenticated %}
+										<a class="navbar-link" href="/accounts/profile">Hi {{ request.user.username }}</a>
+									{% else %}
+										<a href="/accounts/login" class="navbar-link">login</a> or <a href="/accounts/signup"   class="navbar-link">register</a>
+									{% endif %}
+								</p>
+							</div><!--/.nav-collapse -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- End Header -->
+			<div id="main" role="main" class="container">
+			<!-- this is the main content of the site -->	
+				{% block content %}
+					{% load static %}
+	
+				{% endblock %}
+			</div>
+ 	 
+ 	
+		<footer class="footer">
+			<div class="container">
+				<div class="row-fluid">
+					<div class="span6">
+						<p class="copyright"><img class="foot-logo" src="{% static "/static/Watchopolis/assets/img/logo.png" %}" alt="Brand Logo"/> &copy; 2014 <strong>RadioTrove</strong>
+						</p>
+					</div>
+					<div class="span6">
+						<div class="pagination pull-right">
+							<ul>
+								<li>
+									<a data-rel="tooltip" data-placement="top" data-original-title="Follow us on Twitter" href="http://twitter.com/radiotrove"><i class="fa fa-twitter"></i></a>
+								</li>
+								<!--
+								<li>
+									<a data-rel="tooltip" data-placement="top" data-original-title="Share us on Pinterest" href="#"><i class="fa fa-pinterest"></i></a>
+								</li>
+								-->
+								<li>
+									<a data-rel="tooltip" data-placement="top" data-original-title="Like us on Facebook" href="http://www.facebook.com/radiotrove"><i class="fa fa-facebook"></i></a>
+								</li>
+								<!--
+								<li>
+									<a data-rel="tooltip" data-placement="top" data-original-title="+1 us on Google+" href="#"><i class="fa fa-google-plus"></i></a>
+								</li>
+								-->
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</body>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<!--
+	  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script> -->
+	  
+	<!-- Include Javascript/JQuery Assets
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="{% static "Watchopolis/assets/js/jquery.js" %}"></script>
+		<script src="{% static "Watchopolis/assets/js/bootstrap.js" %}"></script>
+		<script src="{% static "Watchopolis/assets/js/jquery.jkit.1.1.10.js" %}"></script>
+		<script src="{% static "Watchopolis/assets/js/jquery.easing.1.3.js" %}"></script>
+		<script src="{% static "Watchopolis/assets/js/jquery.easing.1.3.js" %}"></script>
+		
+		<script type="text/javascript">
+			$("[data-rel=tooltip]").tooltip();
+		</script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('body').jKit();
+			});
+		</script>
+</html>

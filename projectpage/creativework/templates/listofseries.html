@@ -1,0 +1,10 @@
+<html>
+<body>
+<h1> Series </h1> listofseries.html
+	{% for season in seasons %}
+		<div>
+		<h2><a href="../get/{{ season.id }}/">{{ season.name }}</a></h2>
+		</div>
+	{% endfor %}
+</body>
+</html>

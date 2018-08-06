@@ -1,0 +1,24 @@
+{% extends "base.html" %} 
+
+	{% block content %}
+		<h2>profile</h2>this is user profile
+		{% for field in form %}
+			{{ field.error }}
+		{% endfor %}
+		
+		<form method="post">{% csrf_token %}
+		{{form.as_ul}}
+		
+		<input type="submit" value="update"/>
+		<!-- Button  -->
+		<div class="control-group">
+		  <label class="control-label" for="btn-logout"></label>
+		  <div class="controls">
+		    <button id="btn-logout" name="btn-logout" class="btn btn-warning" onClick="this.form.action='/accounts/logout/'">logout</button>
+		  </div>
+		</div>
+	
+	</fieldset>
+	</form>
+		</form>
+	{% endblock %}

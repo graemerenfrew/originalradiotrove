@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap %}
+{% block title %}{% trans "Member Reviews" %}{% endblock %}
+
+{% block content %}
+
+     <div class="label-e">Member Reviews for ? </div>  
+		<ul class="comment-list">
+			
+		{% for review in object_list %}
+			<li class="comment">
+	        	<a class="pull-left" href="#">
+	         	 	<img class="comment-object img-rounded" data-src="holder.js/64x64" alt="64x64" style="width: 40px; height: 40px;" src="http://placekitten.com/g/40/40">
+	       		</a>
+	        	<div class="comment-body">
+	          	<h4 class="comment-heading">{{ review.average_rating }}</h4>
+	          		<p>{{ review.creation_date }}</p>
+	          		<p>{{ review.content }}</p>
+	       	</li>
+	     {% endfor %}
+		</ul>
+     </div>		
+{% endblock %}

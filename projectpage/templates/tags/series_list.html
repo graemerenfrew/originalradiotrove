@@ -1,0 +1,4 @@
+<h3>Series</h3>
+{% for c in active_series %}
+	<a href="{{ c.get_absolute_url }}">{{ c.name }}</a><br /> 
+{% endfor %}

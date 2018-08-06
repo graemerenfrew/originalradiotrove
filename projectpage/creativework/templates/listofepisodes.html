@@ -1,0 +1,11 @@
+<html>
+<body>
+<h1> episodes z </h1>
+{% for episode in active_episodes %}
+	<div>
+	<h2><a href="../getbyslug/{{ episode.slug }}/">{{ episode.name }}</a></h2>
+	<p>{{ episode.description }}</p>
+	</div>
+{% endfor %}
+</body>
+</html>

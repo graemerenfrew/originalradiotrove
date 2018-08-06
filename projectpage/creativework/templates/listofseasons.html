@@ -1,0 +1,11 @@
+<html>
+<body>
+<h1> Seasons </h1>
+{% for season in active_seasons %}
+<div>
+<h2><a href="../get/{{ season.id }}/">{{ season.name }}</a></h2>
+<p>{{ season.description }}</p>
+</div>
+{% endfor %}
+</body>
+</html>

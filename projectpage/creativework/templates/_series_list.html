@@ -1,0 +1,74 @@
+	{% load pagination_tags %}
+	{% autopaginate active_series 8 %}
+	
+	<div class="row-fluid">
+		<ul class="thumbnails">
+		{% for s in active_series %}
+		    <li class="span3">
+				<div class="thumbnail">
+					{%  if not s.thumbnail  %}
+						<a data-rel="tooltip" data-placement="bottom" data-original-title="{{ s.meta_description}}"  class="thumbnail" href="{{ s.get_absolute_url }}"><img style="min-height:200px;height:200px;" href="{{ s.get_absolute_url }}" data-src="holder.js/300x200" alt="300x200"  src="http://placehold.it/300x200"></a>
+					{% else %}
+						<a data-rel="tooltip" data-placement="bottom" data-original-title="{{ s.meta_description}}" class="thumbnail" href="{{ s.get_absolute_url }}"><img style="min-height:200px;height:200px;" href="{{ s.get_absolute_url }}" data-src="holder.js/300x200" alt="300x200"  src="/media/{{ s.thumbnail }}"></a>
+					{% endif %}
+					<!--  REMOVED BECAUSE LONG DESC SKEWED THE LAYOUT
+					<div class="caption">
+						<h6><a href="{{ s.get_absolute_url }}">{{ s.description }}</a></h6>
+						<p>
+							{{ s.meta_description}}
+						</p> 
+					</div>
+					--> 
+				</div>
+			</li>
+		{% endfor %}
+		</ul>
+	</div>
+	  
+	<div class="pagination pagination-small pull-right">
+		{% paginate %}
+		<!--
+		<ul>
+			<li>
+				<a href="#">«</a>
+			</li>
+			<li>
+				<a href="#">1</a>
+			</li>
+			<li>
+				<a href="#">2</a>
+			</li>
+			<li>
+				<a href="#">3</a>
+			</li>
+			<li>
+				<a href="#">4</a>
+			</li>
+			<li>
+				<a href="#">5</a>
+			</li>
+			<li>
+				<a href="#">»</a>
+			</li>
+		</ul>
+		-->
+	</div>	 
+	
+	
+	<!--
+	<div class="pagination">
+	    <span class="step-links">
+	        {% if shows.has_previous %}
+	            <a href="?page={{ shows.previous_page_number }}">previous</a>
+	        {% endif %}
+	
+	        <span class="current">
+	            Page {{ shows.number }} of {{ shows.paginator.num_pages }}.
+	        </span>
+	
+	        {% if shows.has_next %}
+	            <a href="?page={{ shows.next_page_number }}">next</a>
+	        {% endif %}
+	    </span>
+	</div>
+	-->

@@ -1,0 +1,4 @@
+django-haystack
+whoosh
+django-bootstrap-toolkit
+django-review

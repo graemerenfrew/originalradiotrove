@@ -1,0 +1,17 @@
+{% if request.user.is_authenticated %}
+{% else %}
+<div id="info-unit">
+	<div class="alert alert-block alert-info fade in">
+		<button type="button" class="close" data-dismiss="alert">
+			×
+		</button>
+		<h4 class="alert-heading">Your one-stop destination for classic radio shows.</h4>
+		<p>
+			Hundreds of episodes from the Golden Age of Radio.  Find your old favourites, and discover some new ones.
+		</p>
+		<p>
+			<a class="btn btn-primary" href="/accounts/signup">Join RadioTrove</a> <a class="btn btn-success" href="/accounts/login">Login</a>
+		</p>
+	</div>
+</div>
+{% endif %}

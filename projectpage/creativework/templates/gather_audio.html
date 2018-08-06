@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block site-wrapper %}
+
+
+<title>Multiformset Demo</title>
+	{% block app.scripts %}
+    <script src="{{ STATIC_URL }}custom/jquery.formset.min.js"></script>
+    <script src="{{ STATIC_URL }}custom/jquery.formset.js"></script>
+    <script type="text/javascript"> 
+    
+        $(function() {
+            $(".inline.{{ season_form.prefix }}").formset({
+                prefix: "{{ season_form.prefix }}",
+            })
+            $(".inline.{{ episode_form.prefix }}").formset({
+                prefix: "{{ episode_form.prefix }}",
+            })
+        })
+        
+    </script>
+  	{% endblock %}
+  	
+  	{% block content %}
+    <div>
+        <h1>Add Episodes To A Series</h1>
+        <form action="." method="post">
+            {% csrf_token %}
+ 
+            <div>
+                {{ form.as_p }}
+            </div>
+            
+       
+            <fieldset>
+                <legend>Series Season</legend>
+                {{ season_form.as_p }}
+                {{ season_form.management_form }}               
+                {{ season_form.non_form_errors }}
+                
+                {% for form in season_form %}
+                    {{ form.id }}
+                    <div class="inline {{ season_form.prefix }}">
+                        {{ form.description.errors }}
+                        {{ form.description.label_tag }}
+                        {{ form.description }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <fieldset>
+                <legend>Episodes in the selected Season</legend>
+                {{ episode_base.management_form }}
+                {{ episode_base.non_form_errors }}
+                {% for form in episode_base %}
+                    {{ form.id }}
+                    <div class="inline {{ episode_base.prefix }}">
+                        {{ form.number.errors }}
+                        {{ form.number.label_tag }}
+                        {{ form.number }}
+                        {{ form.description.errors }}
+                        {{ form.description.label_tag }}
+                        {{ form.description }}
+                    </div>
+                {% endfor %}
+            </fieldset>
+            <input type="submit" value="Add recipe" class="submit" />
+        </form>
+    </div>
+{% endblock %}
+{% endblock %}

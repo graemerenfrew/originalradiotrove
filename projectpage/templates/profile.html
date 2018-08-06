@@ -1,0 +1,26 @@
+{% extends "base.html" %} 
+
+	{% block content %}
+		<h3>user profile</h2> 
+		{% for field in form %}
+			{{ field.error }}
+		{% endfor %}
+		 
+		<form method="post">{% csrf_token %}
+		 <!-- {{form.as_ul}} --> 
+		
+		<!-- Button  -->
+		<div class="control-group">
+		  <label class="control-label" for="btn-logout"></label>
+		  <div class="controls">
+		    	 <p><button id="btn-reset-password"   class="btn btn-primary" onClick="this.form.action='/accounts/password/reset/'">reset password</button></p>
+		  	 <p><button id="btn-change-password" name="btn-change-password" class="btn btn-primary"  onClick="this.form.action='/accounts/password/change/'">change password</button></p>		 
+  			 <p><button id="btn-manage-emails"  name="btn-manage-emails" class="btn btn-primary"  onClick="this.form.action='/accounts/email/'">manage email addresses</button></p>
+ 		     <p><button id="btn-logout" name="btn-logout" class="btn" onClick="this.form.action='/accounts/logout/'">logout</button></p>
+		  </div>
+		</div>
+	
+	</fieldset>
+	</form>
+		</form>
+{% endblock %}

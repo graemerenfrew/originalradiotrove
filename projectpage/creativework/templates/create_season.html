@@ -1,0 +1,53 @@
+{% extends "creativework.html" %}
+{% block site-wrapper %}
+	{% block sidebar %}
+		<ul>
+			<li><a href="/">Cancel</a>
+		</ul>
+	{% endblock %}
+<script src="{{ STATIC_URL }}/js/jquery.js" ></script>
+<script src="{{ STATIC_URL }}/js/underscore.js" ></script>
+
+<script>
+  $('.add-Episode').click(function(ev){
+    ev.preventDefault();
+    var count = $('.Episodes').children().length;
+    var tmplMarkup = $('#Episode-template').html();
+    var compiledTmpl = _.template(tmplMarkup, { id : count });
+    $('div.Episodes').append(compiledTmpl);
+    // update form count
+    $('#id_Episodes-TOTAL_FORMS').attr('value', count+1);
+  });
+</script>
+	{% block content %}
+	<h1>Add a Series and Episodes</h1>
+	
+		<form class="form-horizontal form-inline" method="post">
+		  {% csrf_token %}
+		  <legend>Series Details</legend>
+		  {{ form }}
+		  {{ formset.management_form }}
+		  <legend>Episodes</legend>
+		  <div class="Episodes">
+		    {% for Episode_form in formset %}
+		      <div id="Episode-{{ forloop.counter0 }}">
+		        {{ Episode_form }}
+		      </div>
+		    {% endfor %}
+		  </div>
+		  <div class="form-actions">
+		     <a href="#" class="btn btn-info add-Episode">Add Episode</a>
+		     <button type="submit" class="btn btn-primary">Create Event</button>
+		   </div>
+		 </form>
+		
+		<script type="text/html" id="Episode-template">
+		  <div id="Episode-<%= id %>">
+		    <label for="id_Episodes-<%= id %>-title">Episode Title:</label>
+		    <input id="id_Episodes-<%= id %>-title" type="text" name="Episodes-<%= id %>-title" maxlength="100">
+		    <input type="hidden" name="Episodes-<%= id %>-author" id="id_Episodes-<%= id %>-author">
+		    <input type="hidden" name="Episodes-<%= id %>-id" id="id_Episodes-<%= id %>-id">
+		  </div>
+		</script>
+	{% endblock %}
+{% endblock %}

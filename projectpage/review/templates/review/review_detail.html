@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load bootstrap %}
+{% block title %}{{ object }}{% endblock %}
+
+{% block content %}
+	<div class="overview">
+	  <div class="page-header">
+	  	<h1>Review for: {{ object.reviewed_item }} <small>{{ object.creation_date|date:"SHORT_DATETIME_FORMAT" }}</small></h1>
+	  </div>
+	  <!--  TODO Put a link back to the series we just reviewed.
+   			 <h4>{{object.object_id}}<a href="{{ object.get_absolute_url }}">{{ object.name  }}</a></h4>  
+      -->
+ 	<!--
+    <h1>{{ object }}</h1>
+    <h2>{% trans "Review for:" %} {{ object.reviewed_item }} ({{ object.creation_date|date:"SHORT_DATETIME_FORMAT" }})</h2>
+   -->
+   	<blockquote>
+    {% if object.content %}
+        <!-- <h3>{{ object.get_user }} {% trans "wrote" %}:</h3> -->
+        <p>{{ object.content }}</p>
+    {% else %}
+        <p>{% blocktrans with user=object.get_user %}{{ user }} reviewed without description.{% endblocktrans %}</p>
+    {% endif %}
+    </blockquote>
+    {% if object.ratings.all %}
+        <h4>{% trans "Current average rating" %}{% if object.get_average_rating %} {{ object.get_average_rating }} {% trans "of" %} 5{% endif %}</h4>
+        <!--
+        <ul>
+            {% for rating in object.ratings.all %}
+                <li>{{ rating.category }}: {{ rating.get_value_display }} {% trans "of" %} 5</li>
+            {% endfor %}
+        </ul>
+        -->
+    {% endif %}
+    {% if object.user == request.user and object.is_editable %}
+        <p>{% trans "This is your own review." %} <a href="{% url "review_update" pk=review.pk %}">{% trans "Change it." %}</a></p>
+    {% endif %}
+   </DIV>
+{% endblock %}

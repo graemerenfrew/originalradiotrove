@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block site_wrapper %}
+	{% block content %}
+	 
+		<form class="form-horizontal" method="post"  action="/accounts/logout/">{% csrf_token %}
+			<fieldset>
+				<!-- Form Name -->
+				<legend>welcome</legend>
+				<h2>{{full_name}} you are now logged in</h2>
+				<!-- Button (Double) -->
+				<div class="control-group">
+				  <label class="control-label" for="btn-logout"></label>
+				  <div class="controls">
+				    <button id="btn-logout"  name="btn-logout"  class="btn btn-warning">logout</button>
+				  </div>
+				</div>
+				
+			</fieldset>
+		</form>
+	
+	{% endblock %}
+{% endblock %}

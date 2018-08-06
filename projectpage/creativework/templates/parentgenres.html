@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+ 
+	<div class="jumbotron">			
+		<h1>genres </h1>
+		<p>explore the shows by genre</p>
+		 
+	</div>
+ 
+	<div >
+		{% if parentgenres.count > 0 %}
+			{% for parentgenre in parentgenres %}
+				<div class="col-6 col-cm-6 col-lg-4">
+					<!--
+					<h2><a href="/creativework/genre/{{ genre.slug }}">{{ parentgenre.name }}</a></h2>
+					<p><small>{{ parentgenre.description }}</small></p>
+					-->
+					<p><a class="btn btn-primary" href="/creativework/parentgenre/{{ parentgenre.slug }}/">{{ parentgenre.name }} &raquo;</a></p>
+				</div>
+			{% endfor %}
+		{% else %}
+			<div class="col-6 col-sm-6 col-lg-4">
+				<p>no genres available yet</p>
+			</div>
+		{% endif %}
+	</div>
+ 
+{% endblock %}

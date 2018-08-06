@@ -1,0 +1,83 @@
+{% extends "creativework.html" %}
+{% load review_tags %}
+
+
+	{% block content %}
+		<div class="page-header">
+              <h4>{{ series.name  }}<small> {{ series.meta_description}}</small></h4>
+        </div>
+		{% for s in seasons %}
+			<div class=""> 
+				Listen to <a href="{{ s.get_absolute_url }}">{{ s.name }}</a>
+			</div>  
+		{% endfor %}
+		<br> 
+			{% autoescape off %}
+			<blockquote>
+			  <p>{{ series.narrative }}</p>  
+			</blockquote>
+			{% endautoescape %}
+		<p>
+			<a data-rel="tooltip" data-placement="top" data-original-title="Like this?" href="/creativework/series/like/{{ series.id }}"><i class="fa fa-thumbs-up"></i></a>
+			{{ series.likes }} people liked this series
+		</p>					
+		<p>{{ series.viewcount }} people listened to this series</p> 
+ 
+ 
+ 		<!-- Allow admin to add many reviews -->
+ 		{% if request.user.is_authenticated %}
+	 		{% if not user.is_superuser %}
+			 	{% user_has_reviewed series request.user as has_reviewed %}
+				{% if has_reviewed %}
+				    <p>You have reviewed this already.</p>
+				{% else %}
+				   	<a href="{% url "review_create" content_type='series' object_id=series.id %}">Review this series</a>	   
+				{% endif %}
+	 		{% else %}
+	 			<a href="{% url "review_create" content_type='series' object_id=series.id %}">Review this series</a>	   
+	 		{% endif %}
+	 	{% else %}
+	 		<p>Please login to leave a review</p>
+ 		{% endif %}
+ 		
+ 		
+ 		<div class="container">
+ 			<div class="bs-docs-example tooltip-demo">
+		      <div class="label-e">Popularity</div>
+			    {% total_review_average series 100 as percentage %}
+			    <p>{{ percentage|floatformat:"0" }}% of our users recommended this!</p>
+
+			    {% total_review_average series 5 as stars %}
+			    <p>This series gets {{ stars|floatformat:"0"	 }} out of 5 stars.</p>
+			    <!--
+			    {% get_review_count series as review_count %}
+		    	<p>{{ review_count }} member reviews.</p>
+		    	-->
+	    		</div>
+	    	</div>
+     	 </dvi>
+      	<!--
+		<a href="{% url "review_list" content_type='series' object_id=series.id %}">Read other reviews</a>
+	 	-->
+
+	 	<div class="container">
+	 		{% get_reviews series as reviews %}
+	 		<div class="bs-docs-example tooltip-demo">
+		      <div class="label-e">Reviews</div>
+				<ul class="comment-list">
+					{% for review in reviews %}
+						<li class="comment">
+			                <div class="comment-body">
+			                  <h4 class="comment-heading"> {{ review.get_average_rating }} / 5.0</h4>
+			                  <p>{{ review.content|truncatewords:'70' }}</p>
+			                </div>
+			              </li>
+			          {% endfor %}
+					</ul>
+		          </div>
+		
+			</div>
+			
+	</div> 	
+	{% endblock %}
+ 

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+
+	<div class="page-header">
+	  <h4>{{ parentgenre.name }} </h4>
+	  <!-- Allow further filtering by subgenre-->
+	
+			{% if subgenres.count > 0 %}
+				<div class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Sub-Genres <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						{% for g in subgenres %}
+						   <li><a href="/creativework/genre/{{ g.slug }}">{{ g.name }}</a></li>
+					 {% endfor %}
+					</ul>
+				</div>
+				
+		 
+			{% else %}
+				<div class="col-6 col-sm-6 col-lg-4">
+					<p>Sorry, no {{ parentgenre.name }} subgenres are available yet</p>
+				</div>
+			{% endif %}
+		 
+	</div>
+	
+	<!-- have all the series by parentgenre or by sub-genre if one selected -->
+	{% load pagination_tags %}
+	{% autopaginate series 10 %}
+		{% for s in series %}
+			<div class="">
+				<a href="/creativework/series/{{ s.slug }}/">{{ s.name }}</a>
+			</div> 
+		{% endfor %}
+ 	{% paginate %}
+
+
+{% endblock %}
+
+	
+	 

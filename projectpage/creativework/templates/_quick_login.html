@@ -1,0 +1,23 @@
+{% if not request.user.is_authenticated %}
+<div class="module-top">
+	<i class="icon-lock"></i> Quick Login
+</div>
+<div class="module">
+	<form method="post" action="{% url 'account_login' %}" data-jkit="[form:validateonly=true]">{% csrf_token %}
+		<fieldset>
+			<label class="label-main">Username</label>
+			<input name="username" class="span10" id="username"  type="text" data-jkit="[validate:required=true;min=3;max=10;error=Please enter your username (3-10 characters)]">
+			<label class="label-main">Password</label>
+			<input name="password" class="span10" id="password"  type="text" data-jkit="[validate:required=true;min=3;max=10;error=Please enter your password (3-10 characters)]">
+			<p>
+				<label class="checkbox">
+					<input type="checkbox">
+					remember me</label>
+			</p>
+			<button name="send" type="submit" value="Submit"  class="btn btn-small">
+				Login
+			</button>
+		</fieldset>
+	</form>
+</div>
+{% endif %}

@@ -1,0 +1,17 @@
+{% extends "creativework.html" %}
+{% block site-wrapper %}
+{% block sidebar %}
+	<ul>
+		<li><a href="/">Cancel</a>
+	</ul>
+{% endblock %}
+
+{% block content %}
+	<form action="/creativework/parentgenre/" method="post">{% csrf_token %}
+	<ul>
+		{{form.as_ul}}
+	</ul>
+	<input type="submit" name="submit" value="Create Review">
+	</form>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block site-wrapper %}
+{% block content %}
+	<div class="jumbotron">			
+		<h1>genres </h1>
+		<p>find all your favourite radio shows by genre</p>
+	</div>
+	
+	<div class="row">
+	{% if genres.count > 0 %}
+		{% for genre in genres %}
+			<div class="col-6 col-cm-6 col-lg-4">
+				<h2><a href="/creativework/genre/{{ genre.slug }}">{{ genre.name }}</a></h2>
+				<p><small>{{ genre.description }}</small></p>
+				<p><a class="btn btn-default" href="/creativework/genre/{{ genre.slug }}/">{{ genre.name }} &raquo;</a></p>
+			</div>
+		{% endfor %}
+	{% else %}
+		<div class="col-6 col-sm-6 col-lg-4">
+			<p>no genres available</p>
+		</div>
+	{% endif %}
+	</div>
+	
+{% endblock %}
+{% endblock %}

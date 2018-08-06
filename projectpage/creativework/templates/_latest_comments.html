@@ -1,0 +1,24 @@
+{% load review_tags %} 
+
+
+<div class="module-top">
+	<i class="icon-comments"></i> Latest Reviews
+</div>
+<div class="module">
+	<ul class="comment-list">
+		{% for review in recent_reviews %}
+		<li class="comment">
+			<a href="/creativework/series/get/{{ review.object_id }}">
+			<div class="comment-body" >
+				<h4 class="comment-heading">{{ review.reviewed_item }} <span class="time">{{ review.creation_date }}</span></h4>
+				<p> 
+					{{ review.content|slice:":50"  }}			
+				</p>
+			</div> 
+			</a>
+		</li>
+		{% endfor %}
+		
+	</ul>
+</div>
+ 

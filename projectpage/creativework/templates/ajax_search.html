@@ -1,0 +1,18 @@
+{% extends "episode.html" %}
+<!--  For some reason I could not extend base.html -->
+{% block site-wrapper %}
+{% block content %}
+	<h1 id="search results" class="page-header">search results</h1>
+	{% if series.count > 0 %}
+	
+		{% for s in series %}
+		    <li><a href="{{ s.object.get_absolute_url }}">{{ s.object.name }}</a></li>
+		{% endfor %}
+	
+	{% else %}
+	
+		<p>search found no results</p>
+		<p><a class="btn btn-primary" href="/creativework/parentgenre">explore genres &raquo;</a></p>
+	{% endif %}
+{% endblock %}
+{% endblock %}

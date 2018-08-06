@@ -1,0 +1,4 @@
+<h3>Genres</h3>
+{% for genre in active_genres %}
+	<a href="{{ genre.get_absolute_url }}">{{ genre.name }}</a><br /> 
+{% endfor %}
